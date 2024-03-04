@@ -20,6 +20,7 @@ router.post('/product', verifyToken, celebrate({
     images : Joi.array().required(),
     price : Joi.number().required(),
 })
+
 }), product);
 
 router.get('/product', getproduct);

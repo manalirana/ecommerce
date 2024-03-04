@@ -5,6 +5,7 @@ const productModel = require('../models/product.model');
 // Endpoint to add a product
 const product = async (req, res) => {
     try {
+        console.log("dfghj");
         const { role } = req.user;
 
         if (role !== 'Seller') {

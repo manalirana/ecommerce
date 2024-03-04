@@ -11,7 +11,7 @@ const signUp = async (req, res) => {
   console.log(req.body.email)
   const isEmailExist = await userModel.findOne({ email: req.body.email });
   if (isEmailExist) {
-    res.status(400).send("Email is already Exist")
+    res.status(400).send("Email is already Exist");
   }
   const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
   const createUser = await userModel.create({
@@ -30,7 +30,7 @@ const login = async (req, res) => {
   }
   const validPassword = await bcrypt.compare(password, user.password)
   if (!validPassword) {
-    return res.status(401).json({ message: 'Invalid email' });
+    return res.status(401).json({ message: 'Invalid password' });
   }
   const token = jwt.sign({ userId: user._id, role: 'Seller' }, 'secretkey');
   res.json({ token });
@@ -51,9 +51,7 @@ const forgotPassword = async (req, res) => {
     lastSentTime: new Date(),
   });
   const token = jwt.sign({ userId: isEmailExist._id }, 'secretkey');
-  //   console.log("secretKey ", secretkey);
 
-  //   const token = jwt.sign({ })
   return res.status(200).json({ token });
 }
 
@@ -91,7 +89,8 @@ const resendOtp = async (req, res) => {
     otp,
     lastSentTime: new Date(),
   });
-  return res.status(200).json({message : "otp send successful"})
+
+  return res.status(200).json({message: "otp send successful"})
 }
 
 const createPassword = async (req, res) => {

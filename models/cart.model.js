@@ -6,8 +6,9 @@ const cartSchema=new mongoose.Schema({
     require: true
   },
   products: [],
+  
   quantity: {
-    type: Numbeer,
+    type: Number,
     require: true
   }
 });
